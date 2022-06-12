@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="index_login.css">
+
+</head>
+<body class="login-page">
+
+    <header class="header d-flex align-items-center justify-content-between">
+        <img class="image-container" src="./images//arif.jpg" alt="arif"/>
+         <p> <span class="large_text">Books Scraping Site</span></p>
+        <img class="image-container" src="./images/pucit.jpg" alt="pucit"/>
+    </header>
+
+    <div>
+    <p style="color:red; text-align: center; position: relative; top: 99px;">( Username : arif | Password : datascience )</p>
+    </div>
+    
+    <main>
+      <div class="login-block">
+        <h1>Log into your account</h1>
+        <div id="alert" style="color:blue; font-size: smaller;"></div>
+        <form onsubmit="return callBookPage()" action="OS.html"  name="login_form" >
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+              <input type="text" class="form-control" id="name" placeholder="Username" name="name" required>
+            </div>
+          </div>
+              
+          
+          <hr class="hr-xs">
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
+              <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-block" id="submit_button" type="submit">Login</button>
+
+        </form>
+      </div>
+
+    </main>
+</body>
+
+<script>
+
+window.onload = function (){
+  document.getElementById("name").focus();
+}
+
+
+function callBookPage()
+{
+
+  if(document.login_form.name.value!="arif")
+  {
+    document.login_form.password.value ="";  // if password is wrong set flus its previous text
+    document.getElementById("name").focus(); // focus to username
+
+    document.getElementById("alert").innerHTML = "*Please enter valid credentials";
+
+    return false;
+  }
+  if(document.login_form.password.value !="datascience")
+  {
+    document.login_form.password.value ="";  // if password is wrong set flus its previous text 
+
+    document.getElementById("password").focus(); // focus to password
+    document.getElementById("alert").innerHTML = "*Please enter valid credentials";
+
+    return false;
+  }
+
+  return true;
+}
+
+</script>
+
+</html>
