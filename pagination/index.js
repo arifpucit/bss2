@@ -18,6 +18,14 @@ function load_books(index){
     }
     star_data_ater = Math.random().toFixed(2);
     rate = +star+ +star_data_ater
+    if(rate > 5)
+    {
+        rate = 5
+    }
+    if(rate < 1)
+    {
+        rate = 0
+    }
 
     //stock
     stock_arr = [`<p class="stock in_stock " data-stock="in stock"><i class="fa fa-check" aria-hidden="true"></i> In stock</p>`,`<p class="stock not_stock " data-stock="not in stock"><i class="fa fa-times" aria-hidden="true"></i> Not in stock</p>`]
@@ -45,6 +53,7 @@ function load_books(index){
 //behtreen logic 
 
 previous_elem = document.getElementById("page_1_parent")
+var next_elem;
 var next_id = 2
 
 function load_books_by_page(e)
@@ -66,42 +75,44 @@ function load_books_by_page(e)
     var index_1;
     var index_2;
 
+    history.pushState({page: 1}, "title 1", "?"+Id_fired)
+
     next_button = document.getElementById("page_next")
     if(Id_fired == "page_1")
     {
         index_1 = 0;
         index_2 = 15;
-        next_id = 2
+        next_elem = document.getElementById("page_2")
     }
     if(Id_fired == "page_2")
     {
         index_1 = 15;
         index_2 = 30;
-        next_id = 3
+        next_elem = document.getElementById("page_3")
     }
     if(Id_fired == "page_3")
     {
         index_1 = 30;
         index_2 = 45;
-        next_id = 4
+        next_elem = document.getElementById("page_4")       
     }
     if(Id_fired == "page_4")
     {
         index_1 = 45;
         index_2 = 60;
-        next_id = 5
+        next_elem = document.getElementById("page_5")
     }
     if(Id_fired == "page_5")
     {
         index_1 = 60;
         index_2 = 75;
-        next_id = 6
+        next_elem = document.getElementById("page_6")
     }
     if(Id_fired == "page_6")
     {
         index_1 = 75;
         index_2 = 90;
-        next_id = 7
+        next_elem = document.getElementById("page_7")
     }
     if(Id_fired == "page_7")
     {
@@ -113,22 +124,7 @@ function load_books_by_page(e)
     }
     if(Id_fired == "page_8")
     {
-        index_1 = (next_id-1) * 15;
-        index_2 = index_1+15;
-
-        actice_class_update = document.getElementById("page_"+(next_id-1))
-        actice_class_update.parentElement.classList.remove("active")
-
-        document.getElementById("page_"+(next_id)).parentElement.classList.add("active")
-
-        next_id+=1
-
-        if(next_id==8)
-        {
-            r = document.getElementById("next_page")
-            r.classList.remove("active")
-            r.classList.add("disabled")
-        }
+        next_elem.click()
     }     
     container = document.getElementById("container")
     container.innerHTML = ""   
