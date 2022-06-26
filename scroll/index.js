@@ -10,6 +10,7 @@ fetch("books.json")
     const book = document.createElement("div")
     book.classList.add("book_container","col-sm-4")
     book_data = data[count]
+
     count++;
 
     rating = Math.floor(Math.random() * 200 + 1)
@@ -28,7 +29,15 @@ fetch("books.json")
     }
     star_data_ater = Math.random().toFixed(2);
     rate = +star+ +star_data_ater
-
+    //edge case
+    if(rate > 5)
+    {
+        rate = 5
+    }
+    if(rate < 1)
+    {
+        rate = 0
+    }
     //stock
     stock_arr = [`<p class="stock in_stock " data-stock="in stock"><i class="fa fa-check" aria-hidden="true"></i> In stock</p>`,`<p class="stock not_stock " data-stock="not in stock"><i class="fa fa-times" aria-hidden="true"></i> Not in stock</p>`]
     stock_rand = Math.floor(Math.random() * 2)
@@ -55,16 +64,17 @@ fetch("books.json")
 
 function load_books()
 {
-    if(count > 102)
-    {
-        showlastPage()
-        window.removeEventListener('scroll', show_more)
-        loading.classList.remove('show');
-        return
-    }
     for (let i=0;i<9;i++)
     {
-        loadBook()
+        if(count > 102)
+        {
+            window.removeEventListener('scroll', show_more)
+            loading.classList.remove('show');
+            showlastPage()
+            return
+        }
+        else
+            loadBook()
     }
 }
 load_books()
